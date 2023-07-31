@@ -1,0 +1,8 @@
+<!-- templates/login.html -->
+{% load socialaccount %} <!-- Load the allauth tags -->
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Login</button>
+    <a href="{% provider_login_url 'google' %}">Login with Google</a>
+</form>

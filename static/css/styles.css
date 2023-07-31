@@ -1,0 +1,59 @@
+static/css/styles.css
+.chat-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-message {
+    background-color: #edf2f7;
+    color: #333;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 70%;
+    margin-bottom: 10px;
+}
+
+.chatbot-message {
+    background-color: #63b3ed;
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 70%;
+    margin-bottom: 10px;
+    align-self: flex-end;
+}
+
+/* Styling for Buttons
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+/* Styling for Welcome Message and Logout Link */
+/* .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.user-info {
+    font-size: 18px;
+}
+
+.logout-link {
+    color: #4CAF50;
+    text-decoration: none;
+    font-size: 16px;
+    border: 1px solid #4CAF50;
+    padding: 8px 16px;
+    border-radius: 5px;
+} */ 

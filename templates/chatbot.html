@@ -1,0 +1,45 @@
+<!-- templates/chatbot.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MeetAyla Chatbot</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+
+<body>
+    <header class="bg-primary text-white p-4">
+        <h1 class="text-4xl">MeetAyla - Your Women's Health Chatbot</h1>
+    </header>
+
+    <main class="container mx-auto mt-8">
+        <section>
+            <p>Hi {{ user.username }}!, Welcome to MeetAyla, How can I help you today</p>
+            <a href="{% url 'logout' %}">Logout</a>
+            <div class="chat-container">
+                <!-- Iterate through the conversation history and display messages -->
+                {% for entry in conversation_history %}
+                <div class="user-message">
+                    <p>{{ entry.user_input }}</p>
+                </div>
+                <div class="chatbot-message">
+                    <p>{{ entry.chatbot_response }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+
+        <section>
+            <form method="post">
+                {% csrf_token %}
+                <input type="text" name="user_input" placeholder="Type your message...">
+                <button type="submit" name="send_button">Send</button>
+            </form>
+        </section>
+    </main>
+</body>
+
+</html>
