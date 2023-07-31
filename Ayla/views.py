@@ -2,19 +2,18 @@ from datetime import timezone
 import json
 import os
 
-#use allauth form
-# from allauth.account.forms import LoginForm
-from django.core import serializers
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-# from django.contrib.sessions.models import Session
-from django.contrib.auth import login, logout, authenticate
+# use allauth form
+from allauth.account.forms import LoginForm
+from django.contrib.auth.forms import UserCreationForm
+
+from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 
 import openai
 from openai.error import InvalidRequestError
-from .models import User, Chatbot
+from .models import  Chatbot
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -99,21 +98,18 @@ def register_view(request):
 
     return render(request, 'register.html', {'form': form})
 
+
 def login_view(request):
     if request.method == 'POST':
-        form = AuthenticationForm(request, data=request.POST)
+        form = LoginForm(request.POST)
         if form.is_valid():
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password')
-            user = authenticate(username=username, password=password)
-            if user is not None:
-                login(request, user)
-                return redirect('chatbot')
+            user = form.user
+            login(request, user)
+            return redirect('chatbot')
     else:
-        form = AuthenticationForm()
+        form = LoginForm()
 
     return render(request, 'login.html', {'form': form})
-
 
 def logout_view(request):
     logout(request)
