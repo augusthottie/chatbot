@@ -31,9 +31,9 @@
 /* Styles for the body background image */
 body {
     background-image: url("");
-    background-size: fill;
+    background-size: cover;
     background-position: center;
-    /* background-color: black; */
+    background-color: black;
   }
   
   /* Styles for the header */
