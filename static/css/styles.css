@@ -22,3 +22,81 @@
     margin-bottom: 10px;
     align-self: flex-end;
 }
+
+     /* Custom CSS for the modified layout */
+       /* styles.css */
+
+/* Add global styles here, if needed */
+
+/* Styles for the body background image */
+body {
+    background-image: url("");
+    background-size: fill;
+    background-position: center;
+    /* background-color: black; */
+  }
+  
+  /* Styles for the header */
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1f2024; /* Primary color */
+    color: #ffffff; /* White text color */
+    padding: 1rem;
+  }
+  
+  
+  .signup-button {
+    background-color: #ffffff; /* White background color */
+    color: #3f51b5; /* Primary color */
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.25rem;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .signup-button:hover {
+    background-color: #f3f3f3; /* Light gray background color on hover */
+  }
+  
+  /* Styles for the main content */
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2rem;
+    color: #302d2d; /* White text color */
+  }
+  
+  .large-text {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  .subtext {
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  .chat-button {
+    display: flex;
+    align-items: center;
+   
+    border-radius: 0.5rem;
+  border: 1px solid #3b3939;
+  
+  /* Drop shadow/XSmall */
+  
+  }
+  
+  .chat-button svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-left: 0.5rem;
+  }
+  

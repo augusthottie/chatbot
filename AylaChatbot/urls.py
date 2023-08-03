@@ -22,7 +22,4 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('', include('Ayla.urls')),
     path('chatbot/', include('Ayla.urls')),
-    path('register/', include('Ayla.urls')),
-    path('login/', include('Ayla.urls')),
-    path('logout/', include('Ayla.urls')),
 ]
