@@ -5,22 +5,16 @@
 }
 
 .user-message {
-    background-color: #edf2f7;
-    color: #333;
-    padding: 10px;
-    border-radius: 10px;
-    max-width: 70%;
+   
+    color: #edf2f7;
+  
     margin-bottom: 10px;
 }
 
 .chatbot-message {
-    background-color: #63b3ed;
+  
     color: #fff;
-    padding: 10px;
-    border-radius: 10px;
-    max-width: 70%;
-    margin-bottom: 10px;
-    align-self: flex-end;
+   
 }
 
      /* Custom CSS for the modified layout */
@@ -28,60 +22,7 @@
 
 /* Add global styles here, if needed */
 
-/* Styles for the body background image */
-body {
-    background-image: url("");
-    background-size: cover;
-    background-position: center;
-    background-color: black;
-  }
-  
-  /* Styles for the header */
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #1f2024; /* Primary color */
-    color: #ffffff; /* White text color */
-    padding: 1rem;
-  }
-  
-  
-  .signup-button {
-    background-color: #ffffff; /* White background color */
-    color: #3f51b5; /* Primary color */
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 0.25rem;
-    font-weight: bold;
-    cursor: pointer;
-  }
-  
-  .signup-button:hover {
-    background-color: #f3f3f3; /* Light gray background color on hover */
-  }
-  
-  /* Styles for the main content */
-  main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 2rem;
-    color: #302d2d; /* White text color */
-  }
-  
-  .large-text {
-    font-size: 2rem;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 1rem;
-  }
-  
-  .subtext {
-    font-size: 1.5rem;
-    text-align: center;
-    margin-bottom: 1rem;
-  }
+
   
   .chat-button {
     display: flex;
@@ -100,3 +41,22 @@ body {
     margin-left: 0.5rem;
   }
   
+
+  /* Custom scrollbar styling */
+    /* You can customize these styles to your liking */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background-color: #f1f1f1;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: #888;
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background-color: #555;
+    }

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+</head>
+
+<body>
+    <h1>Settings</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" name="delete_history_button">Delete Chat History</button>
+    </form>
+
+    <a href="{% url 'chatbot' %}">Back to Chat</a>
+</body>
+
+</html>
