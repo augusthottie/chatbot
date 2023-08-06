@@ -16,13 +16,13 @@
     <!-- Header -->
     <header class="bg-primary sticky top-0 z-50  text-white p-4 flex justify-between items-center">
         <div class="p-8 mx-8">
-                <form method="post">
-                    {% csrf_token %}
-                    <button type="submit" name="new_chat_button" id="new-chat-button">
-                        <span class="text-2xl">+</span>
-                        <span class="ml-2 text-lg">New Chat</span>
-                    </button>
-                </form>
+            <form method="post">
+                {% csrf_token %}
+                <button type="submit" name="new_chat_button" id="new-chat-button">
+                    <span class="text-2xl">+</span>
+                    <span class="ml-2 text-lg">New Chat</span>
+                </button>
+            </form>
         </div>
         <button id="openModalBtn" class="text-white p-8 mx-8">
 
@@ -30,15 +30,7 @@
 
             <!-- SVG path here -->
             <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34" fill="none">
-                <path fill-rule="evenodd" clip-rule="evenodd"
-                    d="M5.70947 8.32081C5.70947 7.40172 6.45454 6.65665 7.37363 6.65665L27.3436 6.65665C28.2626 6.65665 29.0077 7.40172 29.0077 8.32081C29.0077 9.2399 28.2626 9.98497 27.3436 9.98497L7.37363 9.98497C6.45454 9.98497 5.70947 9.2399 5.70947 8.32081Z"
-                    fill="white" />
-                <path fill-rule="evenodd" clip-rule="evenodd"
-                    d="M5.70947 16.6416C5.70947 15.7225 6.45454 14.9774 7.37363 14.9774L27.3436 14.9774C28.2626 14.9774 29.0077 15.7225 29.0077 16.6416C29.0077 17.5607 28.2626 18.3058 27.3436 18.3058H7.37363C6.45454 18.3058 5.70947 17.5607 5.70947 16.6416Z"
-                    fill="white" />
-                <path fill-rule="evenodd" clip-rule="evenodd"
-                    d="M5.70947 24.9624C5.70947 24.0433 6.45454 23.2982 7.37363 23.2982H27.3436C28.2626 23.2982 29.0077 24.0433 29.0077 24.9624C29.0077 25.8815 28.2626 26.6266 27.3436 26.6266H7.37363C6.45454 26.6266 5.70947 25.8815 5.70947 24.9624Z"
-                    fill="white" />
+                <use xlink:href="{% static 'svgs.svg' %}#ham-icon"></use>
             </svg>
 
 
@@ -52,7 +44,7 @@
 
         <div class="bg-black rounded-lg shadow-xl transform transition-all">
             <div class="py-1">
-                <a href="{% url 'history' %}" class="block px-4 py-2 text-white hover:bg-gray-800">History</a>
+                <a href="{% url 'history' %}" class="block px-4 py-2 text-white hover:bg-gray-800 ">History</a>
                 <div class="border-t border-gray-800"></div>
                 <a href="{% url 'settings' %}" class="block px-4 py-2 text-white hover:bg-gray-800">Settings</a>
                 <div class="border-t border-gray-800"></div>
@@ -74,25 +66,16 @@
                     <div id="chat-container" class="chat-container">
                         <!-- Iterate through the conversation history and display messages -->
                         {% for entry in conversation_history %}
-                        <div class="message  entry.sender mb-4 mx-auto w-full max-w-lg ">
-                            <div class="flex hidden md:flex items-start">
+                        <div class="message   mb-4 mx-auto  max-w-lg ">
+                            <div class="flex hidden md:flex mt-8 mx-auto ">
                                 <!-- User input message -->
                                 <!-- Your user input message here -->
-                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"
-                                    fill="none">
-                                    <rect width="32" height="32" rx="16" fill="url(#paint0_linear_18_27123)" />
-                                    <defs>
-                                        <linearGradient id="paint0_linear_18_27123" x1="6.24428" y1="2.90147"
-                                            x2="23.0044" y2="29.599" gradientUnits="userSpaceOnUse">
-                                            <stop stop-color="#B50F60" />
-                                            <stop offset="0.575107" stop-color="#E2B898" />
-                                            <stop offset="1" stop-color="#FBDE76" />
-                                        </linearGradient>
-                                    </defs>
-                                </svg>
+                                <img class="w-8 h-8 rounded-full" src="{% static 'images/user.png' %}"
+                                    alt="Background Image">
 
 
-                                <p class="text-white mt-20  pl-8">{{ entry.user_input }}</p>
+
+                                <p class="text-white  pl-8">{{ entry.user_input }}</p>
                                 <div class="relative mx-auto mr-24  max-w-lg">
                                     <button type="submit" name="send_button"
                                         class="absolute right-0 top-1/2  md:static md:translate-y-0 bg-transparent focus:outline-none">
@@ -106,97 +89,15 @@
                                 </div>
 
                             </div>
-                            <div class="message chatbot-message flex mx-auto w-full max-w-lg md:mx-auto  items-start">
+                            <div
+                                class="message chatbot-message flex mx-auto w-full max-w-lg md:mx-auto mt-14  items-start">
                                 <!-- Chatbot response message -->
                                 <!-- Your chatbot response message here -->
-                                <svg width="32" height="32" viewBox="0 0 32 32" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <rect width="31.8726" height="31.8037" rx="15.9019" fill="#B40C60" />
-                                    <path
-                                        d="M9.3262 14.3153C10.0174 15.8191 9.33101 18.3705 9.33101 18.3705C9.33101 18.3705 8.09851 16.3255 7.53375 14.8252C6.96898 13.325 7.68434 10.6863 7.68434 10.6863C7.68434 10.6863 8.63501 12.8115 9.3262 14.3153Z"
-                                        fill="url(#paint0_linear_165_150)" />
-                                    <path
-                                        d="M10.1223 19.568C11.6563 20.189 12.9055 22.5172 12.9055 22.5172C12.9055 22.5172 10.6063 21.8731 9.16674 21.1679C7.72713 20.4627 6.43924 18.0512 6.43924 18.0512C6.43924 18.0512 8.58817 18.9469 10.1223 19.568Z"
-                                        fill="url(#paint1_linear_165_150)" />
-                                    <path
-                                        d="M14.3253 22.5838C15.8383 21.913 18.3802 22.6337 18.3802 22.6337C18.3802 22.6337 16.3188 23.8385 14.811 24.383C13.3033 24.9275 10.6745 24.1766 10.6745 24.1766C10.6745 24.1766 12.8123 23.2547 14.3253 22.5838Z"
-                                        fill="url(#paint2_linear_165_150)" />
-                                    <path
-                                        d="M19.4423 21.6655C19.9783 20.0997 22.2345 18.7247 22.2345 18.7247C22.2345 18.7247 21.7174 21.0557 21.0923 22.5318C20.4671 24.0079 18.1298 25.4261 18.1298 25.4261C18.1298 25.4261 18.9063 23.2313 19.4423 21.6655Z"
-                                        fill="url(#paint3_linear_165_150)" />
-                                    <path
-                                        d="M12.4035 10.1406C11.8951 11.7156 9.66351 13.1301 9.66351 13.1301C9.66351 13.1301 10.1394 10.7903 10.7385 9.30343C11.3376 7.81654 13.6496 6.35744 13.6496 6.35744C13.6496 6.35744 12.9119 8.56558 12.4035 10.1406Z"
-                                        fill="url(#paint4_linear_165_150)" />
-                                    <path
-                                        d="M17.5013 9.17292C15.9828 9.83117 13.447 9.08934 13.447 9.08934C13.447 9.08934 15.5184 7.90171 17.0306 7.36978C18.5428 6.83784 21.1652 7.61054 21.1652 7.61054C21.1652 7.61054 19.0198 8.51466 17.5013 9.17292Z"
-                                        fill="url(#paint5_linear_165_150)" />
-                                    <path
-                                        d="M21.7349 12.4472C20.1712 11.9051 18.805 9.64364 18.805 9.64364C18.805 9.64364 21.134 10.1697 22.6077 10.8006C24.0813 11.4315 25.4905 13.7742 25.4905 13.7742C25.4905 13.7742 23.2987 12.9893 21.7349 12.4472Z"
-                                        fill="url(#paint6_linear_165_150)" />
-                                    <path
-                                        d="M22.624 17.4799C21.9567 15.9653 22.6834 13.4251 22.6834 13.4251C22.6834 13.4251 23.8834 15.4894 24.4243 16.9984C24.9652 18.5074 24.2082 21.1344 24.2082 21.1344C24.2082 21.1344 23.2913 18.9944 22.624 17.4799Z"
-                                        fill="url(#paint7_linear_165_150)" />
-                                    <defs>
-                                        <linearGradient id="paint0_linear_165_150" x1="7.36288" y1="10.7778"
-                                            x2="9.50849" y2="18.32" gradientUnits="userSpaceOnUse">
-                                            <stop stop-color="white" />
-                                            <stop offset="0.3625" stop-color="#FDFDFD" stop-opacity="0.960417" />
-                                            <stop offset="0.805208" stop-color="#EBEBEB" stop-opacity="0.473931" />
-                                            <stop offset="1" stop-color="white" stop-opacity="0" />
-                                        </linearGradient>
-                                        <linearGradient id="paint1_linear_165_150" x1="6.26788" y1="18.3382"
-                                            x2="13.0001" y2="22.3587" gradientUnits="userSpaceOnUse">
-                                            <stop stop-color="white" />
-                                            <stop offset="0.3625" stop-color="#FDFDFD" stop-opacity="0.960417" />
-                                            <stop offset="0.805208" stop-color="#EBEBEB" stop-opacity="0.473931" />
-                                            <stop offset="1" stop-color="white" stop-opacity="0" />
-                                        </linearGradient>
-                                        <linearGradient id="paint2_linear_165_150" x1="10.7617" y1="24.4993"
-                                            x2="18.3321" y2="22.4555" gradientUnits="userSpaceOnUse">
-                                            <stop stop-color="white" />
-                                            <stop offset="0.3625" stop-color="#FDFDFD" stop-opacity="0.960417" />
-                                            <stop offset="0.805208" stop-color="#EBEBEB" stop-opacity="0.473931" />
-                                            <stop offset="1" stop-color="white" stop-opacity="0" />
-                                        </linearGradient>
-                                        <linearGradient id="paint3_linear_165_150" x1="18.4257" y1="25.5815"
-                                            x2="22.0711" y2="18.6389" gradientUnits="userSpaceOnUse">
-                                            <stop stop-color="white" />
-                                            <stop offset="0.3625" stop-color="#FDFDFD" stop-opacity="0.960417" />
-                                            <stop offset="0.805208" stop-color="#EBEBEB" stop-opacity="0.473931" />
-                                            <stop offset="1" stop-color="white" stop-opacity="0" />
-                                        </linearGradient>
-                                        <linearGradient id="paint4_linear_165_150" x1="13.351" y1="6.2073" x2="9.82836"
-                                            y2="13.213" gradientUnits="userSpaceOnUse">
-                                            <stop stop-color="white" />
-                                            <stop offset="0.3625" stop-color="#FDFDFD" stop-opacity="0.960417" />
-                                            <stop offset="0.805208" stop-color="#EBEBEB" stop-opacity="0.473931" />
-                                            <stop offset="1" stop-color="white" stop-opacity="0" />
-                                        </linearGradient>
-                                        <linearGradient id="paint5_linear_165_150" x1="21.0808" y1="7.28716"
-                                            x2="13.4936" y2="9.26788" gradientUnits="userSpaceOnUse">
-                                            <stop stop-color="white" />
-                                            <stop offset="0.3625" stop-color="#FDFDFD" stop-opacity="0.960417" />
-                                            <stop offset="0.805208" stop-color="#EBEBEB" stop-opacity="0.473931" />
-                                            <stop offset="1" stop-color="white" stop-opacity="0" />
-                                        </linearGradient>
-                                        <linearGradient id="paint6_linear_165_150" x1="25.647" y1="13.4789" x2="18.7186"
-                                            y2="9.80668" gradientUnits="userSpaceOnUse">
-                                            <stop stop-color="white" />
-                                            <stop offset="0.3625" stop-color="#FDFDFD" stop-opacity="0.960417" />
-                                            <stop offset="0.805208" stop-color="#EBEBEB" stop-opacity="0.473931" />
-                                            <stop offset="1" stop-color="white" stop-opacity="0" />
-                                        </linearGradient>
-                                        <linearGradient id="paint7_linear_165_150" x1="24.5311" y1="21.048" x2="22.5051"
-                                            y2="13.4728" gradientUnits="userSpaceOnUse">
-                                            <stop stop-color="white" />
-                                            <stop offset="0.3625" stop-color="#FDFDFD" stop-opacity="0.960417" />
-                                            <stop offset="0.805208" stop-color="#EBEBEB" stop-opacity="0.473931" />
-                                            <stop offset="1" stop-color="white" stop-opacity="0" />
-                                        </linearGradient>
-                                    </defs>
-                                </svg>
+                                <img class="w-8 h-8 rounded-full" src="{% static 'images/chat.png' %}"
+                                    alt="Background Image">
 
-                                <p class="pl-8  mx-auto w-full max-w-lg text-white">{{ entry.chatbot_response }}</p>
+                                <p class="pl-8 whitespace-normal mx-auto w-full max-w-lg text-white">{{
+                                    entry.chatbot_response }}</p>
 
                             </div>
                         </div>
@@ -210,219 +111,49 @@
             <div id="logo" class="flex justify-center items-center lg:mt-14 hidden">
 
                 <!-- Your logo SVG here -->
-                <svg xmlns="http://www.w3.org/2000/svg" width="74" height="74" viewBox="0 0 74 74" fill="none">
-                    <path
-                        d="M13.3115 31.1594C15.7886 36.5489 13.3287 45.6927 13.3287 45.6927C13.3287 45.6927 8.91156 38.3637 6.88749 32.9869C4.86343 27.6101 7.42719 18.1536 7.42719 18.1536C7.42719 18.1536 10.8343 25.77 13.3115 31.1594Z"
-                        fill="url(#paint0_linear_16_26803)" />
-                    <path
-                        d="M16.1636 49.9851C21.6615 52.211 26.1385 60.5548 26.1385 60.5548C26.1385 60.5548 17.8985 58.2465 12.7391 55.7192C7.57966 53.1919 2.96401 44.5493 2.96401 44.5493C2.96401 44.5493 10.6656 47.7592 16.1636 49.9851Z"
-                        fill="url(#paint1_linear_16_26803)" />
-                    <path
-                        d="M31.2273 60.7938C36.6496 58.3895 45.7595 60.9724 45.7595 60.9724C45.7595 60.9724 38.3716 65.2904 32.968 67.2418C27.5644 69.1932 18.1433 66.5022 18.1433 66.5022C18.1433 66.5022 25.8049 63.1981 31.2273 60.7938Z"
-                        fill="url(#paint2_linear_16_26803)" />
-                    <path
-                        d="M49.5656 57.502C51.4867 51.8903 59.5724 46.9625 59.5724 46.9625C59.5724 46.9625 57.7194 55.3167 55.4788 60.6069C53.2383 65.8972 44.8618 70.9798 44.8618 70.9798C44.8618 70.9798 47.6445 63.1138 49.5656 57.502Z"
-                        fill="url(#paint3_linear_16_26803)" />
-                    <path
-                        d="M24.3403 16.1985C22.5183 21.8433 14.5205 26.9125 14.5205 26.9125C14.5205 26.9125 16.2262 18.527 18.3733 13.1982C20.5204 7.86933 28.8062 2.64007 28.8062 2.64007C28.8062 2.64007 26.1623 10.5538 24.3403 16.1985Z"
-                        fill="url(#paint4_linear_16_26803)" />
-                    <path
-                        d="M42.6071 12.7304C37.1649 15.0895 28.0769 12.4308 28.0769 12.4308C28.0769 12.4308 35.5004 8.17448 40.92 6.26808C46.3397 4.36169 55.7381 7.13095 55.7381 7.13095C55.7381 7.13095 48.0493 10.3712 42.6071 12.7304Z"
-                        fill="url(#paint5_linear_16_26803)" />
-                    <path
-                        d="M57.7808 24.4648C52.1765 22.5219 47.2802 14.4172 47.2802 14.4172C47.2802 14.4172 55.6271 16.3025 60.9086 18.5636C66.1901 20.8246 71.2403 29.2208 71.2403 29.2208C71.2403 29.2208 63.3851 26.4076 57.7808 24.4648Z"
-                        fill="url(#paint6_linear_16_26803)" />
-                    <path
-                        d="M60.969 42.5011C58.5775 37.0731 61.1819 27.9694 61.1819 27.9694C61.1819 27.9694 65.4825 35.3674 67.4211 40.7755C69.3598 46.1837 66.6467 55.5984 66.6467 55.5984C66.6467 55.5984 63.3606 47.9291 60.969 42.5011Z"
-                        fill="url(#paint7_linear_16_26803)" />
-                    <defs>
-                        <linearGradient id="paint0_linear_16_26803" x1="6.27511" y1="18.4814" x2="13.9648" y2="45.5118"
-                            gradientUnits="userSpaceOnUse">
-                            <stop stop-color="white" />
-                            <stop offset="0.3625" stop-color="#FDFDFD" stop-opacity="0.960417" />
-                            <stop offset="0.805208" stop-color="#EBEBEB" stop-opacity="0.473931" />
-                            <stop offset="1" stop-color="white" stop-opacity="0" />
-                        </linearGradient>
-                        <linearGradient id="paint1_linear_16_26803" x1="2.34986" y1="45.5777" x2="26.4775" y2="59.987"
-                            gradientUnits="userSpaceOnUse">
-                            <stop stop-color="white" />
-                            <stop offset="0.3625" stop-color="#FDFDFD" stop-opacity="0.960417" />
-                            <stop offset="0.805208" stop-color="#EBEBEB" stop-opacity="0.473931" />
-                            <stop offset="1" stop-color="white" stop-opacity="0" />
-                        </linearGradient>
-                        <linearGradient id="paint2_linear_16_26803" x1="18.4555" y1="67.6586" x2="45.5871" y2="60.334"
-                            gradientUnits="userSpaceOnUse">
-                            <stop stop-color="white" />
-                            <stop offset="0.3625" stop-color="#FDFDFD" stop-opacity="0.960417" />
-                            <stop offset="0.805208" stop-color="#EBEBEB" stop-opacity="0.473931" />
-                            <stop offset="1" stop-color="white" stop-opacity="0" />
-                        </linearGradient>
-                        <linearGradient id="paint3_linear_16_26803" x1="45.9223" y1="71.5366" x2="58.9868" y2="46.6551"
-                            gradientUnits="userSpaceOnUse">
-                            <stop stop-color="white" />
-                            <stop offset="0.3625" stop-color="#FDFDFD" stop-opacity="0.960417" />
-                            <stop offset="0.805208" stop-color="#EBEBEB" stop-opacity="0.473931" />
-                            <stop offset="1" stop-color="white" stop-opacity="0" />
-                        </linearGradient>
-                        <linearGradient id="paint4_linear_16_26803" x1="27.736" y1="2.10198" x2="15.1114" y2="27.2096"
-                            gradientUnits="userSpaceOnUse">
-                            <stop stop-color="white" />
-                            <stop offset="0.3625" stop-color="#FDFDFD" stop-opacity="0.960417" />
-                            <stop offset="0.805208" stop-color="#EBEBEB" stop-opacity="0.473931" />
-                            <stop offset="1" stop-color="white" stop-opacity="0" />
-                        </linearGradient>
-                        <linearGradient id="paint5_linear_16_26803" x1="55.4355" y1="5.972" x2="28.2439" y2="13.0707"
-                            gradientUnits="userSpaceOnUse">
-                            <stop stop-color="white" />
-                            <stop offset="0.3625" stop-color="#FDFDFD" stop-opacity="0.960417" />
-                            <stop offset="0.805208" stop-color="#EBEBEB" stop-opacity="0.473931" />
-                            <stop offset="1" stop-color="white" stop-opacity="0" />
-                        </linearGradient>
-                        <linearGradient id="paint6_linear_16_26803" x1="71.8012" y1="28.1624" x2="46.9705" y2="15.0015"
-                            gradientUnits="userSpaceOnUse">
-                            <stop stop-color="white" />
-                            <stop offset="0.3625" stop-color="#FDFDFD" stop-opacity="0.960417" />
-                            <stop offset="0.805208" stop-color="#EBEBEB" stop-opacity="0.473931" />
-                            <stop offset="1" stop-color="white" stop-opacity="0" />
-                        </linearGradient>
-                        <linearGradient id="paint7_linear_16_26803" x1="67.8038" y1="55.289" x2="60.5431" y2="28.1402"
-                            gradientUnits="userSpaceOnUse">
-                            <stop stop-color="white" />
-                            <stop offset="0.3625" stop-color="#FDFDFD" stop-opacity="0.960417" />
-                            <stop offset="0.805208" stop-color="#EBEBEB" stop-opacity="0.473931" />
-                            <stop offset="1" stop-color="white" stop-opacity="0" />
-                        </linearGradient>
-                    </defs>
-                </svg>
+                <img src="{% static 'images/logo.png' %}" alt="Logo" class="w-24 h-24" />
             </div>
             {% else %}
             <div id="logo" class="flex justify-center items-center lg:mt-14">
 
                 <!-- Your logo SVG here -->
-                <svg xmlns="http://www.w3.org/2000/svg" width="74" height="74" viewBox="0 0 74 74" fill="none">
-                    <path
-                        d="M13.3115 31.1594C15.7886 36.5489 13.3287 45.6927 13.3287 45.6927C13.3287 45.6927 8.91156 38.3637 6.88749 32.9869C4.86343 27.6101 7.42719 18.1536 7.42719 18.1536C7.42719 18.1536 10.8343 25.77 13.3115 31.1594Z"
-                        fill="url(#paint0_linear_16_26803)" />
-                    <path
-                        d="M16.1636 49.9851C21.6615 52.211 26.1385 60.5548 26.1385 60.5548C26.1385 60.5548 17.8985 58.2465 12.7391 55.7192C7.57966 53.1919 2.96401 44.5493 2.96401 44.5493C2.96401 44.5493 10.6656 47.7592 16.1636 49.9851Z"
-                        fill="url(#paint1_linear_16_26803)" />
-                    <path
-                        d="M31.2273 60.7938C36.6496 58.3895 45.7595 60.9724 45.7595 60.9724C45.7595 60.9724 38.3716 65.2904 32.968 67.2418C27.5644 69.1932 18.1433 66.5022 18.1433 66.5022C18.1433 66.5022 25.8049 63.1981 31.2273 60.7938Z"
-                        fill="url(#paint2_linear_16_26803)" />
-                    <path
-                        d="M49.5656 57.502C51.4867 51.8903 59.5724 46.9625 59.5724 46.9625C59.5724 46.9625 57.7194 55.3167 55.4788 60.6069C53.2383 65.8972 44.8618 70.9798 44.8618 70.9798C44.8618 70.9798 47.6445 63.1138 49.5656 57.502Z"
-                        fill="url(#paint3_linear_16_26803)" />
-                    <path
-                        d="M24.3403 16.1985C22.5183 21.8433 14.5205 26.9125 14.5205 26.9125C14.5205 26.9125 16.2262 18.527 18.3733 13.1982C20.5204 7.86933 28.8062 2.64007 28.8062 2.64007C28.8062 2.64007 26.1623 10.5538 24.3403 16.1985Z"
-                        fill="url(#paint4_linear_16_26803)" />
-                    <path
-                        d="M42.6071 12.7304C37.1649 15.0895 28.0769 12.4308 28.0769 12.4308C28.0769 12.4308 35.5004 8.17448 40.92 6.26808C46.3397 4.36169 55.7381 7.13095 55.7381 7.13095C55.7381 7.13095 48.0493 10.3712 42.6071 12.7304Z"
-                        fill="url(#paint5_linear_16_26803)" />
-                    <path
-                        d="M57.7808 24.4648C52.1765 22.5219 47.2802 14.4172 47.2802 14.4172C47.2802 14.4172 55.6271 16.3025 60.9086 18.5636C66.1901 20.8246 71.2403 29.2208 71.2403 29.2208C71.2403 29.2208 63.3851 26.4076 57.7808 24.4648Z"
-                        fill="url(#paint6_linear_16_26803)" />
-                    <path
-                        d="M60.969 42.5011C58.5775 37.0731 61.1819 27.9694 61.1819 27.9694C61.1819 27.9694 65.4825 35.3674 67.4211 40.7755C69.3598 46.1837 66.6467 55.5984 66.6467 55.5984C66.6467 55.5984 63.3606 47.9291 60.969 42.5011Z"
-                        fill="url(#paint7_linear_16_26803)" />
-                    <defs>
-                        <linearGradient id="paint0_linear_16_26803" x1="6.27511" y1="18.4814" x2="13.9648" y2="45.5118"
-                            gradientUnits="userSpaceOnUse">
-                            <stop stop-color="white" />
-                            <stop offset="0.3625" stop-color="#FDFDFD" stop-opacity="0.960417" />
-                            <stop offset="0.805208" stop-color="#EBEBEB" stop-opacity="0.473931" />
-                            <stop offset="1" stop-color="white" stop-opacity="0" />
-                        </linearGradient>
-                        <linearGradient id="paint1_linear_16_26803" x1="2.34986" y1="45.5777" x2="26.4775" y2="59.987"
-                            gradientUnits="userSpaceOnUse">
-                            <stop stop-color="white" />
-                            <stop offset="0.3625" stop-color="#FDFDFD" stop-opacity="0.960417" />
-                            <stop offset="0.805208" stop-color="#EBEBEB" stop-opacity="0.473931" />
-                            <stop offset="1" stop-color="white" stop-opacity="0" />
-                        </linearGradient>
-                        <linearGradient id="paint2_linear_16_26803" x1="18.4555" y1="67.6586" x2="45.5871" y2="60.334"
-                            gradientUnits="userSpaceOnUse">
-                            <stop stop-color="white" />
-                            <stop offset="0.3625" stop-color="#FDFDFD" stop-opacity="0.960417" />
-                            <stop offset="0.805208" stop-color="#EBEBEB" stop-opacity="0.473931" />
-                            <stop offset="1" stop-color="white" stop-opacity="0" />
-                        </linearGradient>
-                        <linearGradient id="paint3_linear_16_26803" x1="45.9223" y1="71.5366" x2="58.9868" y2="46.6551"
-                            gradientUnits="userSpaceOnUse">
-                            <stop stop-color="white" />
-                            <stop offset="0.3625" stop-color="#FDFDFD" stop-opacity="0.960417" />
-                            <stop offset="0.805208" stop-color="#EBEBEB" stop-opacity="0.473931" />
-                            <stop offset="1" stop-color="white" stop-opacity="0" />
-                        </linearGradient>
-                        <linearGradient id="paint4_linear_16_26803" x1="27.736" y1="2.10198" x2="15.1114" y2="27.2096"
-                            gradientUnits="userSpaceOnUse">
-                            <stop stop-color="white" />
-                            <stop offset="0.3625" stop-color="#FDFDFD" stop-opacity="0.960417" />
-                            <stop offset="0.805208" stop-color="#EBEBEB" stop-opacity="0.473931" />
-                            <stop offset="1" stop-color="white" stop-opacity="0" />
-                        </linearGradient>
-                        <linearGradient id="paint5_linear_16_26803" x1="55.4355" y1="5.972" x2="28.2439" y2="13.0707"
-                            gradientUnits="userSpaceOnUse">
-                            <stop stop-color="white" />
-                            <stop offset="0.3625" stop-color="#FDFDFD" stop-opacity="0.960417" />
-                            <stop offset="0.805208" stop-color="#EBEBEB" stop-opacity="0.473931" />
-                            <stop offset="1" stop-color="white" stop-opacity="0" />
-                        </linearGradient>
-                        <linearGradient id="paint6_linear_16_26803" x1="71.8012" y1="28.1624" x2="46.9705" y2="15.0015"
-                            gradientUnits="userSpaceOnUse">
-                            <stop stop-color="white" />
-                            <stop offset="0.3625" stop-color="#FDFDFD" stop-opacity="0.960417" />
-                            <stop offset="0.805208" stop-color="#EBEBEB" stop-opacity="0.473931" />
-                            <stop offset="1" stop-color="white" stop-opacity="0" />
-                        </linearGradient>
-                        <linearGradient id="paint7_linear_16_26803" x1="67.8038" y1="55.289" x2="60.5431" y2="28.1402"
-                            gradientUnits="userSpaceOnUse">
-                            <stop stop-color="white" />
-                            <stop offset="0.3625" stop-color="#FDFDFD" stop-opacity="0.960417" />
-                            <stop offset="0.805208" stop-color="#EBEBEB" stop-opacity="0.473931" />
-                            <stop offset="1" stop-color="white" stop-opacity="0" />
-                        </linearGradient>
-                    </defs>
-                </svg>
+                <img src="{% static 'images/logo.png' %}" alt="Logo" class="w-24 h-24" />
             </div>
             {% endif %}
 
             <!-- User input form -->
-            <div class="mt-28 ">
-                <div class="fixed bottom-6 lg:ml-96 lg:left-32 z-50  w-full max-w-lg ">
-                    <form method="post">
-                        {% csrf_token %}
-                        <div class=>
-                            <input type="text" id="input-group-1" name="user_input"
-                                class="bg-transparent border-b border-gray-600 text-white text-sm rounded-none placeholder-white w-full p-2.5 pr-12"
-                                placeholder="Ask Ayla anything" />
-                            <div class="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5">
-                                <button type="submit" name="send_button">
-                                    <!-- Your send button SVG here -->
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
-                                        fill="none">
-                                        <path
-                                            d="M16.5163 10.7826C16.8127 10.6344 17 10.3314 17 9.99999C17 9.66857 16.8127 9.36559 16.5163 9.21737L4.26634 3.09239C3.95598 2.9372 3.58325 2.98008 3.31623 3.20169C3.04921 3.42329 2.93838 3.78174 3.0337 4.11539L4.2837 8.49037C4.39102 8.866 4.73436 9.12498 5.12503 9.12498L9.12502 9.12498C9.60827 9.12498 10 9.51673 10 9.99998C10 10.4832 9.60827 10.875 9.12502 10.875L5.12503 10.875C4.73436 10.875 4.39103 11.134 4.2837 11.5096L3.0337 15.8846C2.93838 16.2182 3.04921 16.5767 3.31623 16.7983C3.58325 17.0199 3.95598 17.0628 4.26634 16.9076L16.5163 10.7826Z"
-                                            fill="#B40C60" />
-
-                                    </svg>
-                                </button>
-                            </div>
+            <div class="fixed bottom-0 inset-x-0 z-50 flex justify-center items-center shadow-lg p-4">
+                <form method="post" class="w-full max-w-lg bg-black">
+                    {% csrf_token %}
+                    <div class="relative">
+                        <input type="text" id="input-group-1" name="user_input"
+                            class="bg-transparent border-b border-gray-600 text-white text-sm rounded-none placeholder-white w-full p-2.5 pr-12"
+                            placeholder="Ask Ayla anything" />
+                        <div class="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5">
+                            <button type="submit" name="send_button">
+                                <!-- Your send button SVG here -->
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
+                                    fill="none">
+                                    <use xlink:href="{% static 'svgs.svg' %}#msg-icon"></use>
+                                </svg>
+                            </button>
                         </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
+
 
         </main>
         <!-- Back to Top Arrow -->
         <div id="scrollToBottomBtn" class="fixed bottom-4 right-4">
             <button id="scrollToBottom" class="text-white hover:text-gray-300 focus:outline-none">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                    <path
-                        d="M3.33337 4.99996C3.33337 4.26396 3.89437 3.74996 4.60537 3.74996H15.3954C16.1064 3.74996 16.6674 4.26396 16.6674 4.99996V8.33329H17.5007C18.8807 8.33329 20.0007 9.45329 20.0007 10.8333C20.0007 12.2133 18.8807 13.3333 17.5007 13.3333H16.6674V16.6666C16.6674 17.4026 16.1064 17.9166 15.3954 17.9166H4.60537C3.89437 17.9166 3.33337 17.4026 3.33337 16.6666V13.3333H2.50004C1.12004 13.3333 0.0000396729 12.2133 0.0000396729 10.8333C0.0000396729 9.45329 1.12004 8.33329 2.50004 8.33329H3.33337V4.99996ZM1.34604 9.80729C1.53537 10.0156 1.85004 10.0156 2.03937 9.80729C2.2287 9.59996 2.2287 9.24596 2.03937 9.03729L9.14737 2.56162C8.79937 2.21996 8.20004 2.21996 7.85337 2.56162L1.34604 9.03729ZM18.6534 9.80729C18.8427 10.0156 19.1574 10.0156 19.3467 9.80729C19.536 9.59996 19.536 9.24596 19.3467 9.03729L12.8394 2.56162C12.4914 2.21996 11.892 2.21996 11.5454 2.56162L18.6534 9.03729Z"
-                        fill="#B40C60" />
+                    <use xlink:href="{% static 'svgs.svg' %}#arr-icon"></use>
                 </svg>
             </button>
         </div>
+
+
     </div>
 
     <!-- JavaScript for hamburger menu -->
@@ -440,7 +171,7 @@
 
         // Add click event listener to the new chat button
         newChatButton.addEventListener('click', createNewChat);
-        
+
         // Function to create a new chat and clear chat history
         function createNewChat() {
             // Clear the chat session data
@@ -456,12 +187,11 @@
             // chatHistoryContainer.classList.add('hidden');
         }
 
-        const scrollToBottomBtn = document.getElementById('scrollToBottomBtn');
-
-        scrollToBottomBtn.addEventListener('click', () => {
-            window.scrollTo({
-                top: document.body.scrollHeight,
-                behavior: 'smooth'
+        document.addEventListener("DOMContentLoaded", function () {
+            var scrollToBottomBtn = document.getElementById("scrollToBottom");
+            scrollToBottomBtn.addEventListener("click", function () {
+                var chatHistory = document.getElementById("chat-history");
+                chatHistory.scrollTop = chatHistory.scrollHeight;
             });
         });
 
