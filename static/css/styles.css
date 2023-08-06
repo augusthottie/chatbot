@@ -17,11 +17,17 @@
    
 }
 
-     /* Custom CSS for the modified layout */
-       /* styles.css */
+/* Set maximum width and allow word wrapping for chat messages */
+.chatbot-message {
+  max-width: 75%; /* Adjust the value as needed */
+  word-wrap: break-word;
+}
 
-/* Add global styles here, if needed */
-
+/* Add scrollbar to the chat history container */
+#chat-history {
+  max-height: 400px; /* Set a maximum height for the chat history container */
+  overflow-y: auto;
+}
 
   
   .chat-button {
