@@ -93,12 +93,10 @@
                                 class="message chatbot-message flex mx-auto w-full max-w-lg md:mx-auto mt-14  items-start">
                                 <!-- Chatbot response message -->
                                 <!-- Your chatbot response message here -->
-                                <img class="w-8 h-8 rounded-full" src="{% static 'images/chat.png' %}"
-                                    alt="Background Image">
-
-                                <p class="pl-8 whitespace-normal mx-auto w-full max-w-lg text-white">{{
-                                    entry.chatbot_response }}</p>
-
+                                    <img class="w-8 h-8 rounded-full" src="{% static 'images/chat.png' %}" alt="Background Image">
+                                    {% if entry.chatbot_response %}
+                                    <p class="pl-8 whitespace-normal mx-auto w-full max-w-lg text-white">{{ entry.chatbot_response }}</p>
+                                    {% endif %}
                             </div>
                         </div>
                         {% endfor %}
