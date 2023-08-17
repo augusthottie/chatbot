@@ -5,22 +5,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat Message History</title>
+    <!-- Add Tailwind CSS link -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet">
 </head>
 
-<body>
-    <h1>Chat Message History</h1>
+<body class="bg-black">
+    <div class="max-w-2xl mx-auto p-8">
+        <h1 class="text-3xl text-white font-semibold mb-4">Chat Message History</h1>
 
-    <ul>
-        {% for chat in message_history %}
-        <li>
-            <p>Message: {{ chat.message }}</p>
-            <p>Response: {{ chat.response }}</p>
-            <p>Sent at: {{ chat.timestamp }}</p>
-        </li>
-        {% endfor %}
-    </ul>
+        <ul class="bg-white shadow-md p-4 rounded-lg">
+            {% for chat in message_history %}
+            <li class="mb-4">
+                <div class="mb-2">
+                    <span class="text-gray-600 font-semibold">Message:</span>
+                    <p class="ml-2">{{ chat.message }}</p>
+                </div>
+                <div class="mb-2">
+                    <span class="text-gray-600 font-semibold">Response:</span>
+                    <p class="ml-2">{{ chat.response }}</p>
+                </div>
+                <div class="text-gray-500">
+                    <span class="font-semibold">Sent at:</span>
+                    <p class="ml-2">{{ chat.timestamp }}</p>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
 
-    <a href="{% url 'chatbot' %}">Back to Chat</a>
+        <a href="{% url 'chatbot' %}" class="mt-4 text-blue-500 inline-block hover:underline">
+            Back to Chat
+        </a>
+    </div>
 </body>
 
 </html>

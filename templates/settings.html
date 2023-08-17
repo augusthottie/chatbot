@@ -5,17 +5,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Settings</title>
+    <!-- Add Tailwind CSS link -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet">
 </head>
 
-<body>
-    <h1>Settings</h1>
+<body class="bg-black">
+    <div class="max-w-2xl mx-auto p-8">
+        <h1 class="text-3xl text-white font-semibold mb-4">Settings</h1>
 
-    <form method="post">
-        {% csrf_token %}
-        <button type="submit" name="delete_history_button">Delete Chat History</button>
-    </form>
+        <form method="post" class="mb-4">
+            {% csrf_token %}
+            <button type="submit" name="delete_history_button"
+                class="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded">
+                Delete Chat History
+            </button>
+        </form>
 
-    <a href="{% url 'chatbot' %}">Back to Chat</a>
+        <p class="text-white mb-4">
+            This page allows you to manage your chat history settings. Click the "Delete Chat History" button to remove
+            your chat history.
+        </p>
+
+        <a href="{% url 'chatbot' %}" class="text-blue-500 inline-block hover:underline">
+            Back to Chat
+        </a>
+    </div>
 </body>
 
 </html>
