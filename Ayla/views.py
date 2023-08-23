@@ -50,18 +50,12 @@ def chatbot_view(request):
     if 'new_chat_button' in request.POST:
         request.session['conversation_history'] = []
 
-    # Initialize chatbot_response with an empty string
-    chatbot_response = ''
-
     if request.method == 'POST':
         # Check if the "send_button" is clicked
         if 'send_button' in request.POST:
             user_input = request.POST.get('user_input', '').strip()  # Remove leading/trailing spaces
             if user_input:  # Check if user input is not empty
                 chatbot_response = get_chatbot_response(user_input)
-
-                # Add the username to the chatbot response
-                chatbot_response = f"Hi {request.user.username}, {chatbot_response}"
 
                 # Save the user input and chatbot response in the Chatbot model
                 chatbot_entry = Chatbot.objects.create(
@@ -79,7 +73,7 @@ def chatbot_view(request):
                 # Store the updated conversation history in the user's session
                 request.session['conversation_history'] = conversation_history
 
-    return render(request, 'chatbot.html', {'conversation_history': conversation_history, 'chatbot_response': chatbot_response})
+    return render(request, 'chatbot.html', {'conversation_history': conversation_history})
 
     
 def register_view(request):
